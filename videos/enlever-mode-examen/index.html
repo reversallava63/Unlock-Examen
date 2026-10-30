@@ -3,46 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Voici comment enlever le mode examen</title>
+  <title>Unlock Examen</title>
 
   <!-- Discord embed -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Par XxHackerxX">
   <meta property="og:title" content="Voici comment enlever le mode examen">
   <meta property="og:description" content="Suivre le process rigoureusement">
-  <meta property="og:image" content="https://reversallava63.github.io/Unlock-examen/img/thumbnail.webp">
-  <meta property="og:url" content="https://reversallava63.github.io/Unlock-examen/videos/enlever-mode-examen/">
+  <meta property="og:image" content="https://reversallava63.github.io/Unlock-Examen/img/thumbnail.webp">
+  <meta property="og:url" content="https://reversallava63.github.io/Unlock-Examen/videos/enlever-mode-examen/">
   <meta name="theme-color" content="#0a6cff">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #07090d;
-      --text: #f1ede4;
-      --muted: #8b8f98;
-      --accent: #0a6cff;
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    html { color-scheme: dark; }
-    body {
-      display: flex; flex-direction: column;
-      background: var(--bg);
-      color: var(--text);
-      overflow: hidden;
-    }
+    html, body { height: 100%; background: #000; color: #f1ede4; overflow: hidden; }
+    body { display: flex; flex-direction: column; }
 
     header {
-      flex: none;
-      padding: 22px 24px 18px;
-      padding-top: calc(22px + env(safe-area-inset-top, 0px));
-      text-align: center;
-      border-bottom: 1px solid #ffffff12;
-      background: radial-gradient(ellipse at 50% 0%, #0a6cff1f, transparent 70%);
+      flex: none; text-align: center;
+      padding: 20px 16px 16px;
+      padding-top: calc(20px + env(safe-area-inset-top, 0px));
     }
     h1 {
       font-family: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
@@ -52,101 +37,64 @@
       letter-spacing: -0.02em;
       line-height: 1.05;
     }
-    h1 em { font-style: italic; font-weight: 300; color: #cfd6e6; }
-    .sub {
-      margin-top: 8px;
-      font-family: "Fraunces", Georgia, serif;
-      font-style: italic; font-weight: 300;
-      font-size: clamp(14px, 1.6vw, 17px);
-      color: var(--muted);
-    }
+    h1 em { font-style: italic; color: #cfd6e6; }
 
-    main {
-      flex: 1; min-height: 0;
-      padding: 16px;
-      padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    /* Video area: fills everything under the title */
+    main { position: relative; flex: 1; min-height: 0; overflow: hidden; background: #000; }
+    #yt, main iframe {
+      position: absolute; left: 0; width: 100%;
+      top: -64px; height: calc(100% + 64px);   /* pushes YouTube's title bar out of view */
+      border: 0; pointer-events: none;
     }
-    .player {
-      position: relative; width: 100%; height: 100%;
-      border-radius: 14px; overflow: hidden;
-      background: #000;
-      box-shadow: 0 0 0 1px #ffffff14, 0 30px 80px #0a6cff22;
-      cursor: pointer;
-    }
-    .player .backdrop {
-      position: absolute; inset: -30px;
-      background: url("../../img/thumbnail.webp") center / cover;
-      filter: blur(36px) brightness(.35) saturate(1.3);
-    }
-    .player img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: contain; padding: 5%;
-    }
-    .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .player::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(to top, #000a, transparent 40%);
-    }
-    .player.playing::after { display: none; }
-
-    .play {
-      position: absolute; z-index: 2; left: 50%; top: 50%;
-      width: 96px; height: 96px; margin: -48px 0 0 -48px;
-      border-radius: 50%; border: 0; background: var(--accent);
-      display: grid; place-items: center; cursor: pointer;
-      box-shadow: 0 0 0 10px #0a6cff33, 0 12px 40px #0a6cffaa;
-      transition: transform .15s ease;
-    }
-    .play:hover { transform: scale(1.06); }
-    .play::before {
-      content: ""; margin-left: 7px;
-      border-left: 30px solid #fff;
-      border-top: 18px solid transparent; border-bottom: 18px solid transparent;
-    }
-    .bar {
-      position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-      font-size: 13px; color: #fff; font-family: system-ui, sans-serif;
-    }
-    .bar .track { flex: 1; height: 4px; border-radius: 2px; background: #ffffff40; }
-    .player.playing .bar, .player.playing .play, .player.playing .backdrop { display: none; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-    @media (max-width: 600px) {
-      main { padding: 10px; }
-      .play { width: 72px; height: 72px; margin: -36px 0 0 -36px; }
-      .play::before { border-left-width: 22px; border-top-width: 13px; border-bottom-width: 13px; }
-    }
-    @media (prefers-reduced-motion: reduce) { .play { transition: none; } }
+    /* Invisible layer above the video: blocks clicks on YouTube's UI and catches the first tap */
+    #shield { position: absolute; inset: 0; z-index: 2; cursor: default; }
   </style>
 </head>
 <body>
 
   <header>
     <h1>Unlock <em>Examen</em></h1>
-    <p class="sub">Suivre le process rigoureusement</p>
   </header>
 
   <main>
-    <div class="player" id="player">
-      <div class="backdrop"></div>
-      <img src="../../img/thumbnail.webp" alt="Calculatrice NumWorks avec un cadenas ouvert">
-      <button class="play" id="playBtn" aria-label="Lire la vidéo"></button>
-      <div class="bar"><span>0:00</span><div class="track"></div><span>3:32</span></div>
-    </div>
+    <div id="yt"></div>
+    <div id="shield"></div>
   </main>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    var player = document.getElementById("player");
-    function start() {
-      if (player.classList.contains("playing")) return;
-      player.classList.add("playing");
-      player.innerHTML =
-        '<iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0" ' +
-        'title="Unlock Examen" ' +
-        'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    var VIDEO = "dQw4w9WgXcQ";
+    var player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("yt", {
+        videoId: VIDEO,
+        playerVars: {
+          autoplay: 1, mute: 1,            // browsers only allow autoplay when muted
+          controls: 0, disablekb: 1, fs: 0,
+          modestbranding: 1, rel: 0, iv_load_policy: 3,
+          playsinline: 1, loop: 1, playlist: VIDEO,
+          origin: location.origin
+        },
+        events: {
+          onReady: function (e) { e.target.mute(); e.target.playVideo(); }
+        }
+      });
     }
-    player.addEventListener("click", start);
+
+    // First click / tap / key press: unmute, set volume to max, make sure it plays
+    function unlockSound() {
+      if (!player || !player.unMute) return;
+      player.unMute();
+      player.setVolume(100);
+      player.playVideo();
+      ["pointerdown", "touchstart", "keydown", "click"].forEach(function (t) {
+        document.removeEventListener(t, unlockSound, true);
+      });
+    }
+    ["pointerdown", "touchstart", "keydown", "click"].forEach(function (t) {
+      document.addEventListener(t, unlockSound, true);
+    });
   </script>
 </body>
 </html>
